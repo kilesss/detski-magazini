@@ -44,7 +44,7 @@ class ComsedProducts extends Command
     function getProducts($link)
     {
         $html = file_get_contents($link);
-        preg_match_all('/<div class="product-info">.*?<a href="(\S+)" class="thumbnail">/ms', $html, $matches, PREG_SET_ORDER, 0);
+        preg_match_all('/<a href="(\S+)" class="thumbnail">/ms', $html, $matches, PREG_SET_ORDER, 0);
         if (isset($matches[0][1])) {
 
             foreach ($matches as $m){
