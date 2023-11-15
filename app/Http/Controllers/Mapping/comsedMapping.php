@@ -26,7 +26,7 @@ class comsedMapping
             'categories' => '/(Категория:|Вид:)\n*\s*<span>\n*\s*<a href=\S+">(.*?)<\/a/ms',
             'brand' =>  '/Марка:\n*\s*<span>\n*\s*<a href=\S+">(.*?)<\/a/ms'
 
-        ]);
+        ], $this);
     }
 
 }

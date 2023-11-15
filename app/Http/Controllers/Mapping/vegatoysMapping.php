@@ -24,7 +24,7 @@ class vegatoysMapping
             'categories' => '/">(.+?)<\//mxs',
             'brand' =>  '//m'
 
-        ]);
+        ], $this);
     }
 
 }

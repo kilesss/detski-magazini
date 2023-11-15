@@ -24,7 +24,7 @@ class bonamiMapping
             'categories' => '/">(.+?)<\//mxs',
             'brand' =>  '//m'
 
-        ]);
+        ], $this);
     }
 
 }

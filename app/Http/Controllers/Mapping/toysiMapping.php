@@ -23,7 +23,7 @@ class toysiMapping
             'categories_section' => '/class="c-breadcrumb c-breadcrumb__list">(.*?)<div class="o-page-content"/su',
             'categories' => '/breadcrumb__item-link">(.*?)<\/a/su',
             'brand' =>  '//m'
-        ]);
+        ], $this);
     }
 
 }

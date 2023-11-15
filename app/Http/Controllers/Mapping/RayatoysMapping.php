@@ -24,7 +24,7 @@ class RayatoysMapping
             'categories' => '/<span itemprop="name">\n*\s*(.*?)\s\s+<\/span>\n*\s+<meta itemprop="position" content="[1|2|3]"/s',
             'brand' =>  '//m'
 
-        ]);
+        ], $this);
     }
 
 }
