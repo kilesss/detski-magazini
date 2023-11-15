@@ -60,7 +60,7 @@ class ParsingController
             if ($previous == '') {
                 $ifExist = ClientCategories::where('latin_title', $key)
                     ->first();
-                if ($ifExist->first() == null) {
+                if ($ifExist == null) {
                     $insertCat = new ClientCategories;
                     $insertCat->latin_title = $key;
                     $insertCat->title = $key;
