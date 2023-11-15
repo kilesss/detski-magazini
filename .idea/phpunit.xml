@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PHPUnit">
+    <option name="directories">
+      <list>
+        <option value="$PROJECT_DIR$/../sitemap/tests" />
+        <option value="$PROJECT_DIR$/../../../xampp6/htdocs/kulinarchophp/public/facebook/fbsdk/tests" />
+        <option value="$PROJECT_DIR$/tests/Unit" />
+        <option value="$PROJECT_DIR$/tests/Feature" />
+        <option value="$PROJECT_DIR$/../../../xampp6/htdocs/kulinarchophp/tests/Unit" />
+        <option value="$PROJECT_DIR$/../../../xampp6/htdocs/kulinarchophp/tests/Feature" />
+      </list>
+    </option>
+  </component>
+</project>
