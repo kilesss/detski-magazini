@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\Front\HomeController::class, 'index'])->name('index');
-Route::group(['middleware' => ['auth.basic']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix'=>'admin','as'=>'admin.'], function(){
         Route::get('/',[\App\Http\Controllers\Admin\IndexController::class, 'index'] )->name('index');
         Route::get('shops/{id?}',[\App\Http\Controllers\Admin\ShopsController::class, 'shops'] )->name('shops');
