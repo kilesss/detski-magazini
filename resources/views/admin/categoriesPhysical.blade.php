@@ -47,7 +47,7 @@
                                 <tr>
                                     <td colspan="2">
                                         @if(isset($sc->master_title))
-                                            {{$sc->master_title}} => 
+                                            {{$sc->master_title}} =>
                                         @endif
                                         {{$sc->latin_title}}
                                         {{$sc->id}}
@@ -155,7 +155,7 @@
             fillCategory(name,link, parent, id)
             $.ajax({
 
-                url : "http://127.0.0.1:8000/admin/categories/"+$("#cat_id234").val(),
+                url : "http://34.106.224.182/admin/categories/"+$("#cat_id234").val(),
                 data : {                    "_token": "{{ csrf_token() }}",
                      cat_id: id, parent_cat: $("#parent_cat_" + id).val(), title:name, url:link},
                 type : 'POST',

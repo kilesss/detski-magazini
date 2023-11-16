@@ -124,12 +124,12 @@
 <script>
     $('#sortingCategory').change(function() {
 
-        window.location.replace("http://127.0.0.1:8000/category/"+$("#categoryID").val()+"/"+'1'+"/"+this.value);
+        window.location.replace("http://34.106.224.182/category/"+$("#categoryID").val()+"/"+'1'+"/"+this.value);
 
     });
     $('#sortingCategorySearch').change(function() {
 
-        window.location.replace("http://127.0.0.1:8000/searching/"+$("#searchId").val()+"/"+'1'+"/"+this.value);
+        window.location.replace("http://34.106.224.182/searching/"+$("#searchId").val()+"/"+'1'+"/"+this.value);
 
     });
 
