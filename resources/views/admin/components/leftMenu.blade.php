@@ -28,6 +28,10 @@
                         <i class="fa fa-home"></i>
                     </span><span class="nav-label">Продукти</span></a>
             </li>
+            <li><a href="{{ URL::to('admin/categoriesMappingProducts') }}" class="waves-effect"><span class="nav-icon">
+                        <i class="fa fa-home"></i>
+                    </span><span class="nav-label">Списък категории за мапване</span></a>
+            </li>
             <li><a href="{{ URL::to('admin/attributes') }}" class="waves-effect"><span class="nav-icon">
                         <i class="fa fa-home"></i>
                     </span><span class="nav-label">Атрибути</span></a>

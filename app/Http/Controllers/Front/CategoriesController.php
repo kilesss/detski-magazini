@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Products;
+use App\Models\CategoriesForMapping;
 
 class CategoriesController extends Controller
 {
@@ -26,6 +27,8 @@ class CategoriesController extends Controller
         $params = $productsInstance->getPoductsPagination('', $id, $page, $filter, $shopId);
         $params['categoryID']= $id;
         $params['filter'] = $filter;
+        $params['categoriesMapping'] = CategoriesForMapping::join('categories', 'categories.id', 'categories_for_mapping.category_id')->orderBy('categories.title')->get()->toArray();
+
         return $this->view('category', $params);
     }
 

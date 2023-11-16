@@ -133,6 +133,32 @@
 
     });
 
+
+    var idProductForCatChange = 0;
+    function addChangeCategeory(id){
+        idProductForCatChange = id;
+    }
+    function changeProductCategory (id){
+        if(idProductForCatChange !== 0){
+            console.log(location.protocol + "//" + location.host+"/updateProductId/");
+            $.ajax({
+                type: "POST",
+                url: location.protocol + "//" + location.host+"/updateProductId/",
+                data: {
+                    id:idProductForCatChange,
+                    category: id,
+                    "_token": "{{ csrf_token() }}",
+                },
+
+                cache: false,
+                success: function (data) {
+                    location.reload();
+
+                }
+            });
+        }
+
+    }
 </script>
 </body>
 </html>

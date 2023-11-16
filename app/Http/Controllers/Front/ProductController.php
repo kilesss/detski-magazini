@@ -37,4 +37,8 @@ class ProductController extends Controller
             'images' => ProductImages::where('product_id', $id)->get()->toArray()
         ]);
     }
+
+    public function updateProductId(){
+        \App\Models\Products::where('id', request()->id)->update(['master_cat_id' => request()->category]);
+    }
 }

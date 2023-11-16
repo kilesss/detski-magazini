@@ -47,6 +47,9 @@
 
                                                 <div class="single-product">
                                                     <div class="product-image">
+                                                        @auth
+                                                            <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="addChangeCategeory({{$item->id}})" >Смени категория</button>
+                                                        @endauth
                                                         <a href="{{route('product',$item->id)}}"><img
                                                                 src="{{$item->image_url}}" alt=""/>
                                                         </a>
@@ -65,6 +68,27 @@
                                         @endforeach
 
 
+                                    </div>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @foreach($categoriesMapping as $cat)
+                                                        <p onclick="changeProductCategory({{$cat['id']}})"> {{$cat['title']}}</p>
+                                                    @endforeach
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <nav aria-label="Page navigation example">

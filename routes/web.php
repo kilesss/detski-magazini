@@ -26,6 +26,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('categories',[\App\Http\Controllers\Admin\CategoriesController::class, 'categoriesSubmit'] )->name('categories');
         Route::get('categories/{id}',[\App\Http\Controllers\Admin\CategoriesController::class, 'categoriesPhysical'] )->name('categories');
         Route::post('categories/{id}',[\App\Http\Controllers\Admin\CategoriesController::class, 'categoriesPhysicalSubmit'] )->name('categories');
+        Route::get('categoriesMappingProducts',[\App\Http\Controllers\Admin\CategoriesController::class, 'categoriesMappingProducts'] )->name('categoriesMappingProducts');
+        Route::post('categoriesMappingProducts',[\App\Http\Controllers\Admin\CategoriesController::class, 'categoriesMappingProductsUpdate'] )->name('categoriesMappingProducts');
+
+
         Route::get('attributes',[\App\Http\Controllers\Admin\AttributesController::class, 'attributes'] )->name('attributes');
         Route::post('attributes',[\App\Http\Controllers\Admin\AttributesController::class, 'attributesSubmit'] )->name('attributes');
         Route::get('getAttributesValues/{id}',[\App\Http\Controllers\Admin\AttributesController::class, 'getAttributesValues'] )->name('attributes');
@@ -47,3 +51,5 @@ Route::get('/category/{id}/{page?}/{filter?}/{shopId?}', [\App\Http\Controllers\
 Route::post('/search/{page?}/{filter?}', [\App\Http\Controllers\Front\CategoriesController::class, 'postSearch'])->name('search');
 Route::get('/searching/{string?}{page?}/{filter?}', [\App\Http\Controllers\Front\CategoriesController::class, 'getSearch'])->name('searching');
 Route::get('/product/{id}', [\App\Http\Controllers\Front\ProductController::class, 'getProduct'])->name('product');
+
+Route::post('/updateProductId', [\App\Http\Controllers\Front\ProductController::class, 'updateProductId'])->name('updateProductId');

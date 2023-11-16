@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Categories;
+use App\Http\Controllers\Categories;
+use App\Models\CategoriesForMapping;
 use App\Models\ClientCategories;
 use App\Models\Products;
 use App\PhysicalStore;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use function React\Promise\all;
 
 class CategoriesController extends AdminController
@@ -32,6 +34,33 @@ class CategoriesController extends AdminController
         return redirect('admin/categories');
 
 
+    }
+
+    public function categoriesMappingProducts(){
+        $cats = new Categories();
+
+        $categories = $cats->getFormatCategories();
+        $categoriesForMapping = CategoriesForMapping::join('categories', 'categories.id', 'categories_for_mapping.category_id')->orderBy('categories.title')->get()->toArray();
+        return view('admin.categoriesMappingProducts', ['categories' => $categories, 'cat_mapping' => $categoriesForMapping]);
+
+    }
+
+    public function categoriesMappingProductsUpdate(){
+        if (\request()->type == 'add'){
+            $r = CategoriesForMapping::insert(['category_id' => \request() -> id]);
+        }elseif (\request()->type == 'all'){
+            $allCategories = \App\Models\Categories::all()->toArray();
+            foreach ($allCategories as $c){
+                $r = CategoriesForMapping::insert(['category_id' => $c['id']]);
+
+            }
+        }elseif (\request()->type == 'delete'){
+            DB::table('categories_for_mapping')->delete();
+
+        }else{
+            $r = CategoriesForMapping::where('category_id' ,\request()->id) -> delete();
+
+        }
     }
     public function categoriesPhysical($id){
         $cc = new ClientCategories();
