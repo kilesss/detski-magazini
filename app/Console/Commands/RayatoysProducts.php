@@ -46,10 +46,12 @@ class RayatoysProducts extends Command
         $i = true;
         $k = 1;
         foreach ($categoryLinks as $link){
-           $i =  $this->getProducts($link,'/href="(\S+)"\s*class="product photo product-item-photo"/s', 8,"" );
+            while ($i == true){
+                $i =  $this->getProducts($link.$k,'/href="(\S+)"\s*class="product photo product-item-photo"/s', 8,"" );
+                $k++;
+                echo $k."\n";
+            }
 
-            $k++;
-            echo $k."\n";
         }
     }
 
