@@ -3646,7 +3646,7 @@ text-transform: uppercase;
 }
 .mean-container .mean-bar:before {
   color: #fff;
-  content: "CATEGORY";
+  content: "Меню";
   font-size: 18px;
   font-weight: 700;
   left: 10px;

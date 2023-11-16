@@ -113,7 +113,10 @@
                             </li>
                         @endforeach
 
-
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- mobile-menu-area start -->
@@ -124,6 +127,21 @@
                     <div class="mobile-menu">
                         <nav id="dropdown">
                             <ul>
+                                @foreach($categories as $kcat => $cat)
+                                    <li><a href="#">{{$cat['title']}}</a>
+
+                                        @if($cat['elements'])
+                                            <ul>
+                                                @foreach($cat['elements'] as $skcat => $lem)
+                                                    <li><a href="{{route('category',$skcat)}}">{{$lem['title']}}</a></li>
+
+
+                                                @endforeach
+                                        </ul>
+                                        @endif
+
+                                    </li>
+                            @endforeach
                                 <li><a href="index.html">Home</a>
                                     <ul>
                                         <li><a href="index-2.html">Home 2</a></li>
