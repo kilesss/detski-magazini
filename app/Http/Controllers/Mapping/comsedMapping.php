@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Mapping;
 
+use App\Http\Controllers\Mapping\Extends\ParsingHelpers;
 use App\Http\Controllers\Mapping\Interfaces\MappingInterface;
 use App\Models\ClientCategories;
 use App\Models\FailedLinks;
@@ -11,7 +12,6 @@ use JetBrains\PhpStorm\NoReturn;
 
 class comsedMapping implements MappingInterface
 {
-
 
     public function parseData($links, $shopId): void
     {
@@ -28,6 +28,7 @@ class comsedMapping implements MappingInterface
             'brand' =>  '/Марка:\n*\s*<span>\n*\s*<a href=\S+">(.*?)<\/a/ms'
 
         ], $this);
+        dd($parseController->translateToLatin('дсфсдфсдф'));
     }
 
     public function getTitle($hteml)
@@ -62,6 +63,20 @@ class comsedMapping implements MappingInterface
 
     public function getCategories($html)
     {
-        // TODO: Implement getCategories() method.
+        $parseController = new ParsingHelpers();
+        preg_match_all('/class="list-unstyled mt0">(.*?)<\/li>\n*\s*<\/ul>/ms', $html, $matches, PREG_SET_ORDER, 0);
+        if (isset($matches[0][1])) {
+            $categoriesHtml = $matches[0][1];
+            preg_match_all('/(Категория:|Вид:)\n*\s*<span>\n*\s*<a href=\S+">(.*?)<\/a/ms', $categoriesHtml, $matches2, PREG_SET_ORDER, 0);
+            $catarr = [];
+            foreach ($matches2 as $item) {
+                $catarr[$parseController->translateToLatin($item[2])] = $item[2];
+            }
+            return $catarr;
+
+        } else {
+            FailedLinks::insert(['link' => $this->currentLink, 'type_fail' => 'empty categories']);
+            return [];
+        }
     }
 }

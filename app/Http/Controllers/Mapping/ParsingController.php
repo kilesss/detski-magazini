@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Mapping;
 
+use App\Http\Controllers\Mapping\Extends\ParsingHelpers;
 use App\Models\ClientCategories;
 use App\Models\FailedLinks;
 use App\Models\ProductImages;
@@ -9,7 +10,7 @@ use App\Models\Products;
 use App\Models\ProductsForMapping;
 use JetBrains\PhpStorm\NoReturn;
 
-class ParsingController
+class ParsingController extends ParsingHelpers
 {
 
     private string|bool $html;
@@ -55,6 +56,8 @@ class ParsingController
 
     #[NoReturn] public function addCategoriesToDB()
     {
+
+
         $previous = '';
         foreach ($this->categories as $key => $cat) {
             if ($previous == '') {
@@ -66,8 +69,9 @@ class ParsingController
                     $insertCat->title = $key;
                     $insertCat->client_id = $this->clientId;
                     $insertCat->save();
+//                    $this->master_id =$insertCat->id;
                 } else {
-                    $this->master_id = $ifExist->master_id;
+//                    $this->master_id = $ifExist->master_id;
                 }
             } else {
                 $masterCat = ClientCategories::where('latin_title', $previous)
@@ -84,12 +88,20 @@ class ParsingController
                         $insertCat->client_master_id = $masterCat->id;
                     }
                     $insertCat->save();
+                } else {
+//                    $this->master_id = $cat->master_id;
                 }
             }
             $previous = $key;
         }
         $last_id = ClientCategories::where('latin_title', array_key_last($this->categories))
             ->first();
+
+        if ($last_id->master_id != null) {
+            $this->master_id = $last_id->master_id;
+
+        }
+
         if ($last_id == null) {
             $this->categoryID = 0;
         } else {
@@ -102,9 +114,8 @@ class ParsingController
         if ($this->getTitle() != '') {
             $ifExist = Products::where('title', $this->getTitle())
                 ->first();
-            var_dump("---------------------", $this->getTitle(), '----------- \n');
+            var_dump("---------------------", $this->getTitle(), '   ', $this->master_id, '----------- \n');
             if ($ifExist == null) {
-
                 $insertProduct = new Products();
                 $insertProduct->client_id = $this->clientId;
                 $insertProduct->title = $this->getTitle();
@@ -240,25 +251,26 @@ class ParsingController
     public function getCategories()
     {
         if ($responce = $this->masterInstance->getCategories($this->html)) {
-            return $responce;
-        }
-        if ($responce = $this->masterInstance->getCategories($this->html)) {
-            return $responce;
-        }
-        preg_match_all($this->regex['categories_section'], $this->html, $matches, PREG_SET_ORDER, 0);
-
-        if (isset($matches[0][1])) {
-            $categoriesHtml = $matches[0][1];
-            preg_match_all($this->regex['categories'], $categoriesHtml, $matches2, PREG_SET_ORDER, 0);
-            $catarr = [];
-            foreach ($matches2 as $item) {
-                $catarr[$this->translateToLatin($item[1])] = $item[1];
-            }
-            $this->categories = $catarr;
+            $this->categories = $responce;
         } else {
-            FailedLinks::insert(['link' => $this->currentLink, 'type_fail' => 'empty categories']);
-            return '';
+
+
+            preg_match_all($this->regex['categories_section'], $this->html, $matches, PREG_SET_ORDER, 0);
+            if (isset($matches[0][1])) {
+                $categoriesHtml = $matches[0][1];
+                preg_match_all($this->regex['categories'], $categoriesHtml, $matches2, PREG_SET_ORDER, 0);
+                $catarr = [];
+                foreach ($matches2 as $item) {
+                    $catarr[$this->translateToLatin($item[1])] = $item[1];
+                }
+                $this->categories = $catarr;
+
+            } else {
+                FailedLinks::insert(['link' => $this->currentLink, 'type_fail' => 'empty categories']);
+                return '';
+            }
         }
+
     }
 
     function getItem(&$array, $path)
@@ -286,13 +298,5 @@ class ParsingController
         }
     }
 
-    public function translateToLatin($textCyr): array|string
-    {
-        $cyr = ['а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'я', 'ю', 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ю', 'Я'
-        ];
-        $lat = ['a', 'b', 'v', 'g', 'd', 'e', 'j', 'z', 'i', 'i', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'c', 'ch', 'sh', 'sht', 'y', 'ia', 'iu', 'A', 'B', 'V', 'G', 'D', 'E', 'J', 'Z', 'I', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'F', 'X', 'C', 'CH', 'SH', 'SHT', 'Y', 'IU', 'IA'
-        ];
-        return str_replace($cyr, $lat, $textCyr);
-    }
 
 }
