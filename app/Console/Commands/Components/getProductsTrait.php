@@ -36,7 +36,12 @@ trait getProductsTrait
         if (isset($matches[0][1])) {
 
             foreach ($matches as $m){
-                ProductsForMapping::insert(['url'=> $preLink.$m[1], 'client_id' => $id]);
+               $exist=  ProductsForMapping::select('id')->where('url',$preLink.$m[1])->first();
+                if ($exist == null){
+                    ProductsForMapping::insert(['url'=> $preLink.$m[1], 'client_id' => $id]);
+                }else{
+                    ProductsForMapping::where('url', $preLink.$m[1])->update(['mapped' => 0]);
+                }
                 echo $preLink.$m[1]."\n";
             }
 

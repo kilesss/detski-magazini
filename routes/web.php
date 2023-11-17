@@ -36,6 +36,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('deleteAttributesValues/{id}',[\App\Http\Controllers\Admin\AttributesController::class, 'deleteAttributesValues'] )->name('attributes');
         Route::get('products-categorised',[\App\Http\Controllers\Admin\ProductCategorisedController::class, 'productsCategorised'] )->name('products-categorised');
         Route::post('products-categorised',[\App\Http\Controllers\Admin\ProductCategorisedController::class, 'productsCategorisedSubmit'] )->name('products-categorised');
+        Route::get('productParsing',[\App\Http\Controllers\Admin\ProductCategorisedController::class, 'productParsing'] )->name('productParsing');
+        Route::post('downloadProducts',[\App\Http\Controllers\Admin\ProductCategorisedController::class, 'downloadProducts'] )->name('downloadProducts');
+        Route::post('downloadProductsList',[\App\Http\Controllers\Admin\ProductCategorisedController::class, 'downloadProductsList'] )->name('downloadProductsList');
+
 
 //TODO da se napravi menu koeto da izpylnqva skriptovete i da se triqt flagovete za novi produti po magazini (ili da se napravi pri izpylnenie na skripta da trie flagovete pyrvo)
 //TODO da se napravi funkcionalnost da se filtrirat stoki po magazin (moje v kategoriqta da se sloji menu v lqvo s kategoriite i pri klik da filtrira)

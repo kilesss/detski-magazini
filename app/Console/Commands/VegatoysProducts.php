@@ -107,6 +107,8 @@ class VegatoysProducts extends Command
             $k++;
             echo $k."\n";
         }
+
+
     }
 
 

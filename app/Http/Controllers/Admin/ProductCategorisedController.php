@@ -6,9 +6,11 @@ use App\Attributes;
 use App\AttributesValues;
 use App\Http\Controllers\Categories;
 use App\Http\Controllers\Front\CategoriesFront;
+use App\Jobs\DownloadProducts;
 use App\Models\ProductImages;
 use App\Models\Products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 
 class ProductCategorisedController extends AdminController
@@ -31,4 +33,23 @@ class ProductCategorisedController extends AdminController
         return redirect('admin/products-categorised');
     }
 
+
+    public function productParsing(){
+        return view('admin.productParsing');
+    }
+
+    public function downloadProductsList(){
+
+//        DownloadProducts::dispatch();
+        dispatch(new DownloadProducts());
+        dd('ok')
+        ;
+
+    }
+    public function downloadProducts(){
+        Artisan::queue('app:parse-sitemaps', ['sitemapname' => 'hippo' , 'shopId' => 1]);
+        Artisan::queue('app:parse-sitemaps', ['sitemapname' => 'comsed', 'shopId' => 1]);
+        Artisan::queue('app:parse-sitemaps', ['sitemapname' => 'Rayatoys', 'shopId' => 8]);
+        Artisan::queue('app:parse-sitemaps', ['sitemapname' => 'vegatoys', 'shopId' => 5]);
+    }
 }

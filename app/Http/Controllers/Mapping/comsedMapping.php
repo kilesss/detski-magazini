@@ -28,7 +28,6 @@ class comsedMapping implements MappingInterface
             'brand' =>  '/Марка:\n*\s*<span>\n*\s*<a href=\S+">(.*?)<\/a/ms'
 
         ], $this);
-        dd($parseController->translateToLatin('дсфсдфсдф'));
     }
 
     public function getTitle($hteml)
