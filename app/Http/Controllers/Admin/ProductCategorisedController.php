@@ -47,8 +47,9 @@ class ProductCategorisedController extends AdminController
 
     }
     public function downloadProducts(){
+        Artisan::queue('app:parse-sitemaps', ['sitemapname' => 'comsed', 'shopId' => 2]);
+
         Artisan::queue('app:parse-sitemaps', ['sitemapname' => 'hippo' , 'shopId' => 1]);
-        Artisan::queue('app:parse-sitemaps', ['sitemapname' => 'comsed', 'shopId' => 1]);
         Artisan::queue('app:parse-sitemaps', ['sitemapname' => 'Rayatoys', 'shopId' => 8]);
         Artisan::queue('app:parse-sitemaps', ['sitemapname' => 'vegatoys', 'shopId' => 5]);
     }

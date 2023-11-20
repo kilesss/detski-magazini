@@ -94,6 +94,19 @@ class ParsingController extends ParsingHelpers
             }
             $previous = $key;
         }
+
+//        mysql> select count(id), client_id from product_for_mapping where mapped = 0 group by count(id);
+//ERROR 1056 (42000): Can't group on 'count(id)'
+//mysql> select count(id), client_id from product_for_mapping where mapped = 0 group by client_id;
+//+-----------+-----------+
+//| count(id) | client_id |
+//+-----------+-----------+
+//|     15219 |         1 |
+//|       320 |         8 |
+//|      1589 |         5 |
+//|      4737 |         2 |
+//+-----------+-----------+
+//4 rows in set (0.13 sec)
         $last_id = ClientCategories::where('latin_title', array_key_last($this->categories))
             ->first();
 

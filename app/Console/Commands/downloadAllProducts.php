@@ -29,7 +29,7 @@ class downloadAllProducts extends Command
     public function handle()
     {
         Artisan::call('app:parse-sitemaps', ['sitemapname' => 'hippo' , 'shopId' => 1]);
-        Artisan::call('app:parse-sitemaps', ['sitemapname' => 'comsed', 'shopId' => 1]);
+        Artisan::call('app:parse-sitemaps', ['sitemapname' => 'comsed', 'shopId' => 2]);
         Artisan::call('app:parse-sitemaps', ['sitemapname' => 'Rayatoys', 'shopId' => 8]);
         Artisan::call('app:parse-sitemaps', ['sitemapname' => 'vegatoys', 'shopId' => 5]);
         //

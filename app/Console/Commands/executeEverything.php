@@ -28,8 +28,9 @@ class executeEverything extends Command
      */
     public function handle()
     {
-        Artisan::call('app:bonami-products');
+
         Artisan::call('app:comset-products');
+        Artisan::call('app:bonami-products');
         Artisan::call('app:hippolands-products');
         Artisan::call('app:rayatoys-products');
         Artisan::call('app:app:vegatoys-products');
