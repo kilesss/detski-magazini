@@ -15,7 +15,7 @@ class Products
         }
         $productsDBQuery = DB::table('products_images')
             ->leftJoin('product', 'product.id', '=', 'products_images.product_id')
-            ->select('product.id', 'title', 'price', 'products_images.image_url');
+            ->select('product.id', 'title', 'price', 'products_images.image_url', 'description');
 
         if ($shopId != 0){
             $productsDBQuery->where('client_id', $shopId);

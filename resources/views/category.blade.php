@@ -71,314 +71,121 @@
                                     </div>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    @foreach($categoriesMapping as $cat)
-                                                        <p onclick="changeProductCategory({{$cat['id']}})"> {{$cat['title']}}</p>
-                                                    @endforeach
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
-                                <nav aria-label="Page navigation example">
+                                <div class="right-all-product" id="right-ap">
+                                <div class="previous-next">
                                     <ul class="pagination">
                                         @if($currentPage >=2)
-                                            <li class="page-item"><a class="page-link"
-                                                                     href="{{route('category',[$categoryID,$currentPage-1])}}">Предишна
-                                                    страница</a></li>
 
-                                            <li class="page-item"><a class="page-link"
-                                                                     href="{{route('category',[$categoryID,$currentPage-1])}}">{{$currentPage-1}}</a>
-                                            </li>
+                                        <li class="previous"><a href="{{route('category',[$categoryID,$currentPage-1])}}">Предишна</a></li>
+                                        <li><a href="{{route('category',[$categoryID,$currentPage-1])}}">{{$currentPage-1}}</a></li>
                                         @endif
-                                        <li class="page-item"><a class="page-link"
-                                                                 href="{{route('category',[$categoryID,$currentPage])}}"><b>{{$currentPage}}</b></a>
-                                        </li>
-                                        @if($currentPage<$lastPage)
-                                            <li class="page-item"><a class="page-link"
-                                                                     href="{{route('category',[$categoryID,$currentPage+1])}}">{{$currentPage+1}}</a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link"
-                                                                     href="{{route('category',[$categoryID,$currentPage+1])}}">Следваща
-                                                    страница</a></li>
-                                        @endif
+
+                                        <li class="active"><a href="{{route('category',[$categoryID,$currentPage])}}">{{$currentPage}}</a></li>
+                                            @if($currentPage<$lastPage)
+                                        <li><a href="{{route('category',[$categoryID,$currentPage+1])}}">{{$currentPage+1}}</a></li>
+                                        <li class="next"><a href="{{route('category',[$categoryID,$currentPage+1])}}">Следваща</a></li>
+                                            @endif
+
                                     </ul>
-                                </nav>
+                                </div>
+                                </div>
+
                             </div>
                             <div role="tabpanel" class="tab-pane" id="bestseller">
                                 <div class="right-all-product" id="right-ap">
                                     <ul>
                                         <li>
                                             <div class="row">
-                                                <div class="col-xl-4 col-lg-4 col-md-4 col-12">
+                                                @foreach($items as $item)
+{{--                                                    /===============================--}}
+{{--                                                    <div class="col-xl-4 col-lg-6 col-md-4 col-12">--}}
+
+{{--                                                        <div class="single-product">--}}
+{{--                                                            <div class="product-image">--}}
+{{--                                                                @auth--}}
+{{--                                                                    <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="addChangeCategeory({{$item->id}})" >Смени категория</button>--}}
+{{--                                                                @endauth--}}
+{{--                                                                <a href="{{route('product',$item->id)}}"><img--}}
+{{--                                                                        src="{{$item->image_url}}" alt=""/>--}}
+{{--                                                                </a>--}}
+{{--                                                            </div>--}}
+{{--                                                            <div class="price-box">--}}
+
+{{--                                                                <a href="{{route('product',$item->id)}}"><p>{{$item->title}}</p>--}}
+{{--                                                                </a>--}}
+{{--                                                                <div class="price">--}}
+{{--                                                                    <a href=""><h5>{{$item->price}} лв.</h5></a>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+
+                                                    {{----------------------------------------------------------------------}}
+
+                                                    <div class="col-xl-4 col-lg-4 col-md-4 col-12">
                                                     <div class="product-image">
-                                                        <a href="#"><img src="img/product/printed-chiffon-dress.jpg.png"
+                                                        <a href="{{route('product',$item->id)}}"><img src="{{$item->image_url}}"
                                                                          alt=""/> </a>
                                                     </div>
-                                                    <a href="#"><span class="leval">new</span></a>
                                                 </div>
                                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12">
                                                     <div class="price-box">
-                                                        <a href="#"><p class="price-box-heading">Printed Chiffon
-                                                                Dress</p></a>
+                                                        <a href="{{route('product',$item->id)}}"><p class="price-box-heading"><b>{{$item->title}}</b></p></a>
                                                         <div class="price">
-                                                            <a href=""><h5>£ 35.37<span>£ 30.60</span></h5></a>
-                                                            <div class="rank">
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart-o"></i></a>
-                                                            </div>
+                                                            <a href=""><h5>{{$item->price}} лв.</h5></a>
+
                                                         </div>
-                                                        <p class="desc">Faded short sleeves t-shirt with high neckline.
-                                                            Soft and stretchy material for a comfortable fit.
-                                                            Accessorize with a straw hat and you're ready for
-                                                            summer! </p>
-                                                        <div class="action">
-                                                            <div class="cart-box">
-                                                                <div class="product-text">
-                                                                    <a href="#"><span class="heart"><i
-                                                                                class="fa fa-heart"></i></span></a>
-                                                                    <a href="#"><p>add to card</p></a>
-                                                                    <a href="#"><span class="retweet"><i
-                                                                                class="fa fa-retweet"></i></span></a>
-                                                                    <a href="#"><i class="fa fa-search-plus"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="color-list">
-                                                            <ul>
-                                                                <li><a class="orange" href="#"></a></li>
-                                                                <li><a class="pink" href="#"></a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <span>In stock</span>
+                                                        <p class="desc">{{strip_tags($item->description)}}</p>
+
+
+                                                        @auth
+                                                            <span> <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="addChangeCategeory({{$item->id}})" >Смени категория</button></span>
+                                                                                                                        @endauth
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="row">
-                                                <div class="col-xl-4 col-lg-4 col-md-4 col-12">
-                                                    <div class="product-image">
-                                                        <a href="#"><img src="img/product/printed-dress.chear.jpg.png"
-                                                                         alt=""/> </a>
-                                                    </div>
-                                                    <a href="#"><span class="leval">new</span></a>
-                                                </div>
-                                                <div class="col-xl-8 col-lg-8 col-md-8 col-12">
-                                                    <div class="price-box">
-                                                        <a href="#"><p class="price-box-heading">Faded Short Sleeves
-                                                                T-shirt</p></a>
-                                                        <div class="price">
-                                                            <a href=""><h5>£ 29.37<span>£ 24.60</span></h5></a>
-                                                            <div class="rank">
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart-o"></i></a>
-                                                            </div>
-                                                        </div>
-                                                        <p class="desc">Faded short sleeves t-shirt with high neckline.
-                                                            Soft and stretchy material for a comfortable fit.
-                                                            Accessorize with a straw hat and you're ready for
-                                                            summer! </p>
-                                                        <div class="action">
-                                                            <div class="cart-box">
-                                                                <div class="product-text">
-                                                                    <a href="#"><span class="heart"><i
-                                                                                class="fa fa-heart"></i></span></a>
-                                                                    <a href="#"><p>add to card</p></a>
-                                                                    <a href="#"><span class="retweet"><i
-                                                                                class="fa fa-retweet"></i></span></a>
-                                                                    <a href="#"><i class="fa fa-search-plus"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="color-list">
-                                                            <ul>
-                                                                <li><a class="orange" href="#"></a></li>
-                                                                <li><a class="pink" href="#"></a></li>
-                                                                <li><a class="Orange" href="#"></a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <span>In stock</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="row">
-                                                <div class="col-xl-4 col-lg-4 col-md-4 col-12">
-                                                    <div class="product-image">
-                                                        <a href="#"><img src="img/product/printed-dress.jpg.png"
-                                                                         alt=""/> </a>
-                                                    </div>
-                                                    <a href="#"><span class="leval">new</span></a>
-                                                </div>
-                                                <div class="col-xl-8 col-lg-8 col-md-8 col-12">
-                                                    <div class="price-box">
-                                                        <a href="#"><p class="price-box-heading">Blouse</p></a>
-                                                        <div class="price">
-                                                            <a href=""><h5>£ 23.37<span>£ 24.60</span></h5></a>
-                                                            <div class="rank">
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart-o"></i></a>
-                                                            </div>
-                                                        </div>
-                                                        <p class="desc">Faded short sleeves t-shirt with high neckline.
-                                                            Soft and stretchy material for a comfortable fit.
-                                                            Accessorize with a straw hat and you're ready for
-                                                            summer! </p>
-                                                        <div class="action">
-                                                            <div class="cart-box">
-                                                                <div class="product-text">
-                                                                    <a href="#"><span class="heart"><i
-                                                                                class="fa fa-heart"></i></span></a>
-                                                                    <a href="#"><p>add to card</p></a>
-                                                                    <a href="#"><span class="retweet"><i
-                                                                                class="fa fa-retweet"></i></span></a>
-                                                                    <a href="#"><i class="fa fa-search-plus"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="color-list">
-                                                            <ul>
-                                                                <li><a class="white" href="#"></a></li>
-                                                                <li><a class="orange" href="#"></a></li>
-                                                                <li><a class="pink" href="#"></a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <span>In stock</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="row">
-                                                <div class="col-xl-4 col-lg-4 col-md-4 col-12">
-                                                    <div class="product-image">
-                                                        <a href="#"><img src="img/product/blouse.jpg.png" alt=""/> </a>
-                                                    </div>
-                                                    <a href="#"><span class="leval">new</span></a>
-                                                </div>
-                                                <div class="col-xl-8 col-lg-8 col-md-8 col-12">
-                                                    <div class="price-box">
-                                                        <a href="#"><p class="price-box-heading">Chiffon Dress</p></a>
-                                                        <div class="price">
-                                                            <a href=""><h5>£ 20.37<span>£ 18.60</span></h5></a>
-                                                            <div class="rank">
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart-o"></i></a>
-                                                            </div>
-                                                        </div>
-                                                        <p class="desc">Faded short sleeves t-shirt with high neckline.
-                                                            Soft and stretchy material for a comfortable fit.
-                                                            Accessorize with a straw hat and you're ready for
-                                                            summer! </p>
-                                                        <div class="action">
-                                                            <div class="cart-box">
-                                                                <div class="product-text">
-                                                                    <a href="#"><span class="heart"><i
-                                                                                class="fa fa-heart"></i></span></a>
-                                                                    <a href="#"><p>add to card</p></a>
-                                                                    <a href="#"><span class="retweet"><i
-                                                                                class="fa fa-retweet"></i></span></a>
-                                                                    <a href="#"><i class="fa fa-search-plus"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="color-list">
-                                                            <ul>
-                                                                <li><a class="orange" href="#"></a></li>
-                                                                <li><a class="white" href="#"></a></li>
-                                                                <li><a class="pink" href="#"></a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <span>In stock</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="row">
-                                                <div class="col-xl-4 col-lg-4 col-md-4 col-12">
-                                                    <div class="product-image">
-                                                        <a href="#"><img src="img/product/printed-chiffon-dress.jpg.png"
-                                                                         alt=""/> </a>
-                                                    </div>
-                                                    <a href="#"><span class="leval">new</span></a>
-                                                </div>
-                                                <div class="col-xl-8 col-lg-8 col-md-8 col-12">
-                                                    <div class="price-box">
-                                                        <a href="#"><p class="price-box-heading">Printed Chiffon
-                                                                Dress</p></a>
-                                                        <div class="price">
-                                                            <a href=""><h5>£ 23.37<span>£ 24.60</span></h5></a>
-                                                            <div class="rank">
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart"></i></a>
-                                                                <a href="#"><i class="fa fa-heart-o"></i></a>
-                                                            </div>
-                                                        </div>
-                                                        <p class="desc">Faded short sleeves t-shirt with high neckline.
-                                                            Soft and stretchy material for a comfortable fit.
-                                                            Accessorize with a straw hat and you're ready for
-                                                            summer! </p>
-                                                        <div class="action">
-                                                            <div class="cart-box">
-                                                                <div class="product-text">
-                                                                    <a href="#"><span class="heart"><i
-                                                                                class="fa fa-heart"></i></span></a>
-                                                                    <a href="#"><p>add to card</p></a>
-                                                                    <a href="#"><span class="retweet"><i
-                                                                                class="fa fa-retweet"></i></span></a>
-                                                                    <a href="#"><i class="fa fa-search-plus"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="color-list">
-                                                            <ul>
-                                                                <li><a class="orange" href="#"></a></li>
-                                                                <li><a class="pink" href="#"></a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <span>In stock</span>
-                                                    </div>
-                                                </div>
+
+                                                @endforeach
+
+
                                             </div>
                                         </li>
                                     </ul>
                                     <div class="previous-next">
                                         <ul class="pagination">
-                                            <li class="previous"><a href="#">Previous</a></li>
-                                            <li><a href="#">1</a></li>
-                                            <li class="active"><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">4</a></li>
-                                            <li class="next"><a href="#">Next</a></li>
+                                            @if($currentPage >=2)
+
+                                                <li class="previous"><a href="{{route('category',[$categoryID,$currentPage-1])}}">Предишна</a></li>
+                                                <li><a href="{{route('category',[$categoryID,$currentPage-1])}}">{{$currentPage-1}}</a></li>
+                                            @endif
+
+                                            <li class="active"><a href="{{route('category',[$categoryID,$currentPage])}}">{{$currentPage}}</a></li>
+                                            @if($currentPage<$lastPage)
+                                                <li><a href="{{route('category',[$categoryID,$currentPage+1])}}">{{$currentPage+1}}</a></li>
+                                                <li class="next"><a href="{{route('category',[$categoryID,$currentPage+1])}}">Следваща</a></li>
+                                            @endif
+
                                         </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            @foreach($categoriesMapping as $cat)
+                                                <p onclick="changeProductCategory({{$cat['id']}})"> {{$cat['title']}}</p>
+                                            @endforeach
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -394,7 +201,7 @@
                         @foreach($clients as $client)
                             <div class="owl-item active" style="width: 146.4px; margin-right: 30px;">
                                 <div class="brand-logo">
-                                    <a href="{{route('category',[$categoryID,$currentPage, $filter,$client['id']])}}"><img
+                                    <a href="{{route('category',[$categoryID,$currentPage, 1,$client['id']])}}"><img
                                             src="{{$client['logo']}}"
                                             alt=""></a>
                                 </div>

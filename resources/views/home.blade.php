@@ -8,78 +8,39 @@
 <section class="product-area">
     <div class="container">
         <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12">
-                <div class="product-tab bg-bd responsive-padding">
-                    <ul class="tab-menu nav" role="tablist">
-                        <li role="presentation">
-                            <a href="#arrival" role="tab" class="active" data-bs-toggle="tab">
-                                Нови продукти
-                            </a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#bestseller" role="tab" data-bs-toggle="tab">Най-разглаждани
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="tab-content jump">
-                        <div role="tabpanel" class="tab-pane active" id="arrival">
-                            <div class="all-product owl-carousel">
-                                @foreach($mostChecked as  $mchec)
-                                    <div class="single-product">
-                                        <div class="product-image">
-                                            <a href="{{route('product',$mchec['id'])}}"><img
-                                                    src="{{$mchec['image_url']}}"
-                                                    alt=""/>
-                                            </a>
-                                            <div class="efface"></div>
-                                            <div class="cart-box">
+            <div class=" right-featured responsive-padding tab-content jump">
+                <div role="tabpanel" class="tab-pane  active" id="arrival">
+                    <div class="right-all-product">
+                        <div class="row">
+                            @foreach($mostChecked as  $mchec)
+                                <div class="single-product col-xl-4 col-lg-6 col-md-4 col-12">
+                                    <div class="product-image">
+                                        <a href="{{route('product',$mchec['id'])}}"><img
+                                                src="{{$mchec['image_url']}}"
+                                                alt=""/>
+                                        </a>
+                                        <div class="efface"></div>
+                                        <div class="cart-box">
 
-                                                <div class="link">
-                                                    <a href="#"><i class="fa fa-search-plus"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="price-box">
-                                            <a href="{{route('product',$mchec['id'])}}"><p>{{$mchec['title']}}</p></a>
-                                            <div class="price">
-                                                <a href="{{route('product',$mchec['id'])}}"><h5>{{$mchec['price']}} лв.</h5></a>
+                                            <div class="link">
+                                                <a href="#"><i class="fa fa-search-plus"></i></a>
                                             </div>
                                         </div>
                                     </div>
-
-                                @endforeach
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="bestseller">
-                            <div class="all-product owl-carousel">
-                                @foreach($randomProd as  $mchec)
-                                    <div class="single-product">
-                                        <div class="product-image">
-                                            <a href="{{route('product',$mchec['id'])}}"><img
-                                                    src="{{$mchec['image_url']}}"
-                                                    alt=""/>
+                                    <div class="price-box">
+                                        <a href="{{route('product',$mchec['id'])}}"><p>{{$mchec['title']}}</p></a>
+                                        <div class="price">
+                                            <a href="{{route('product',$mchec['id'])}}"><h5>{{$mchec['price']}} лв.</h5>
                                             </a>
-                                            <div class="efface"></div>
-                                            <div class="cart-box">
-
-                                                <div class="link">
-                                                    <a href="#"><i class="fa fa-search-plus"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="price-box">
-                                            <a href="{{route('product',$mchec['id'])}}"><p>{{$mchec['title']}}</p></a>
-                                            <div class="price">
-                                                <a href="{{route('product',$mchec['id'])}}"><h5>{{$mchec['price']}} лв.</h5></a>
-                                            </div>
                                         </div>
                                     </div>
-                                @endforeach
-                            </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
@@ -116,171 +77,8 @@
             <div class="col-xl-3 col-lg-3 col-md-4">
                 <div class="left-featured  bg-bd">
                     <h4 class="left-featured-head">ADS</h4>
-                    <div class="left-single-feature owl-carousel">
-                        <div class="single-product">
-                            <div class="product-image">
-                                <a href="#"><img src="{{asset('front/img/product/printed-summer-dress.jpg.png')}}"
-                                                 alt=""/></a>
-                                <div class="cart-box">
-                                    <div class="product-text">
-                                        <a href="#"><span class="heart"><i class="fa fa-heart"></i></span></a>
-                                        <a href="#"><p>add to card</p></a>
-                                        <a href="#"><span class="retweet"><i class="fa fa-retweet"></i></span></a>
-                                    </div>
-                                    <div class="link">
-                                        <a href="#"><i class="fa fa-search-plus"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="price-box">
-                                <a href="#">
-                                    <div class="rank">
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart-o"></i>
-                                    </div>
-                                </a>
-                                <a href="#"><p>Printed Chiffon Dress</p></a>
-                                <div class="price">
-                                    <a href=""><h5>£ 23.37<span>£ 24.60</span></h5></a>
-                                </div>
-                                <span class="descount">5%</span>
-                            </div>
-                            <a href="#"><span class="leval">new</span></a>
-                        </div>
-                        <div class="single-product">
-                            <div class="product-image">
-                                <a href="#"><img src="{{asset('front/img/product/faded-short-tshirt.jpg.png')}}"
-                                                 alt=""/> </a>
-                                <div class="cart-box">
-                                    <div class="product-text">
-                                        <a href="#"><span class="heart"><i class="fa fa-heart"></i></span></a>
-                                        <a href="#"><p>add to card</p></a>
-                                        <a href="#"><span class="retweet"><i class="fa fa-retweet"></i></span></a>
-                                    </div>
-                                    <div class="link">
-                                        <a href="#"><i class="fa fa-search-plus"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="price-box">
-                                <a href="#">
-                                    <div class="rank">
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart-o"></i>
-                                    </div>
-                                </a>
-                                <a href="#"><p>Faded Short T-shirt</p></a>
-                                <div class="price">
-                                    <a href=""><h5>£ 36.60<span>£ 40.60</span></h5></a>
-                                </div>
-                                <span class="descount">5%</span>
-                            </div>
-                            <a href="#"><span class="leval">new</span></a>
-                        </div>
-                        <div class="single-product">
-                            <div class="product-image">
-                                <a href="#"><img src="{{asset('front/img/product/printed-dress.jpg.png')}}" alt=""/>
-                                </a>
-                                <div class="cart-box">
-                                    <div class="product-text">
-                                        <a href="#"><span class="heart"><i class="fa fa-heart"></i></span></a>
-                                        <a href="#"><p>add to card</p></a>
-                                        <a href="#"><span class="retweet"><i class="fa fa-retweet"></i></span></a>
-                                    </div>
-                                    <div class="link">
-                                        <a href="#"><i class="fa fa-search-plus"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="price-box">
-                                <a href="#">
-                                    <div class="rank">
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart-o"></i>
-                                    </div>
-                                </a>
-                                <a href="#"><p>Printed Chiffon Dress</p></a>
-                                <div class="price">
-                                    <a href="#"><h5>£ 23.37<span>£ 24.60</span></h5></a>
-                                </div>
-                                <span class="descount">5%</span>
-                            </div>
-                            <a href="#"><span class="leval">new</span></a>
-                        </div>
-                        <div class="single-product">
-                            <div class="product-image">
-                                <a href="#"><img src="{{asset('front/img/product/printed.jpg.png')}}" alt=""/> </a>
-                                <div class="cart-box">
-                                    <div class="product-text">
-                                        <a href="#"><span class="heart"><i class="fa fa-heart"></i></span></a>
-                                        <a href="#"><p>add to card</p></a>
-                                        <a href="#"><span class="retweet"><i class="fa fa-retweet"></i></span></a>
-                                    </div>
-                                    <div class="link">
-                                        <a href="#"><i class="fa fa-search-plus"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="price-box">
-                                <a href="#">
-                                    <div class="rank">
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart-o"></i>
-                                    </div>
-                                </a>
-                                <a href="#"><p>Printed Chiffon Dress</p></a>
-                                <div class="price">
-                                    <a href=""><h5>£ 23.37<span>£ 24.60</span></h5></a>
-                                </div>
-                                <span class="descount">5%</span>
-                            </div>
-                            <a href="#"><span class="leval">new</span></a>
-                        </div>
-                        <div class="single-product">
-                            <div class="product-image">
-                                <a href="#"><img src="{{asset('front/img/product/faded-short-sleeves-tshirt.jpg.png')}}"
-                                                 alt=""/> </a>
-                                <div class="cart-box">
-                                    <div class="product-text">
-                                        <a href="#"><span class="heart"><i class="fa fa-heart"></i></span></a>
-                                        <a href="#"><p>add to card</p></a>
-                                        <a href="#"><span class="retweet"><i class="fa fa-retweet"></i></span></a>
-                                    </div>
-                                    <div class="link">
-                                        <a href="#"><i class="fa fa-search-plus"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="price-box">
-                                <a href="#">
-                                    <div class="rank">
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart-o"></i>
-                                    </div>
-                                </a>
-                                <a href="#"><p>Printed Chiffon Dress</p></a>
-                                <div class="price">
-                                    <a href=""><h5>£ 23.37<span>£ 24.60</span></h5></a>
-                                </div>
-                                <span class="descount">5%</span>
-                            </div>
-                            <a href="#"><span class="leval">new</span></a>
-                        </div>
+                    <div style="background-color: red;width: 100%;HEIGHT: 423PX;">
+
                     </div>
                 </div>
                 <div class="add">
@@ -291,10 +89,12 @@
                 <div class="right-featured responsive-padding">
                     <div class="right-feature-head">
                     </div>
-                    <div class="new-product owl-carousel">
+                    <div class="right-all-product">
+                        <div class="row">
+
                         @foreach($randomProd2 as  $mchec)
 
-                            <div class="single-product">
+                            <div class="single-product col-xl-4 col-lg-6 col-md-4 col-12">
                                 <div class="product-image">
                                     <a href="{{route('product',$mchec['id'])}}"><img
                                             src="{{$mchec['image_url']}}"
@@ -318,34 +118,41 @@
 
                         @endforeach
 
+                        </div>
                     </div>
-                    <div class="new-product owl-carousel">
-                        @foreach($randomProd3 as  $mchec)
 
-                            <div class="single-product">
-                                <div class="product-image">
-                                    <a href="{{route('product',$mchec['id'])}}"><img
-                                            src="{{$mchec['image_url']}}"
-                                            alt=""/>
-                                    </a>
-                                    <div class="efface"></div>
-                                    <div class="cart-box">
+                </div>
 
-                                        <div class="link">
-                                            <a href="#"><i class="fa fa-search-plus"></i></a>
+                <div class=" right-featured responsive-padding tab-content jump">
+                    <div role="tabpanel" class="tab-pane  active" id="arrival">
+                        <div class="right-all-product">
+                            <div class="row">
+                                @foreach($randomProd3 as  $mchec)
+                                    <div class="single-product col-xl-4 col-lg-6 col-md-4 col-12">
+                                        <div class="product-image">
+                                            <a href="{{route('product',$mchec['id'])}}"><img
+                                                    src="{{$mchec['image_url']}}"
+                                                    alt=""/>
+                                            </a>
+                                            <div class="efface"></div>
+                                            <div class="cart-box">
+
+                                                <div class="link">
+                                                    <a href="#"><i class="fa fa-search-plus"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="price-box">
+                                            <a href="{{route('product',$mchec['id'])}}"><p>{{$mchec['title']}}</p></a>
+                                            <div class="price">
+                                                <a href="{{route('product',$mchec['id'])}}"><h5>{{$mchec['price']}} лв.</h5>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="price-box">
-                                    <a href="{{route('product',$mchec['id'])}}"><p>{{$mchec['title']}}</p></a>
-                                    <div class="price">
-                                        <a href="{{route('product',$mchec['id'])}}"><h5>{{$mchec['price']}} лв.</h5></a>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
-
-                        @endforeach
-
+                        </div>
                     </div>
                 </div>
             </div>
