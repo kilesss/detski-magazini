@@ -109,8 +109,7 @@ class ParsingController extends ParsingHelpers
 //4 rows in set (0.13 sec)
         $last_id = ClientCategories::where('latin_title', array_key_last($this->categories))
             ->first();
-
-        if ($last_id->master_id != null) {
+        if ($last_id != null && $last_id->master_id != null) {
             $this->master_id = $last_id->master_id;
 
         }
