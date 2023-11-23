@@ -1,7 +1,7 @@
 <!--function sendrequest(){-->
 <!---->
 <!--$.ajax({-->
-<!--url: 'http://127.0.0.1:8000/api/shops',-->
+<!--url: 'http://34.106.224.182/api/shops',-->
 <!--data: {-->
 <!--online: {-->
 <!--id: 1,-->

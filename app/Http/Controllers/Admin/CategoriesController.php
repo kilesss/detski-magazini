@@ -67,7 +67,9 @@ class CategoriesController extends AdminController
         ;
         return $this->view('admin.categoriesPhysical', [
             'id23'=>$id,
-            'categories' => Categories::orderBy('title')->get(),
+
+
+            'categories' => \App\Models\Categories::orderBy('title')->get(),
             'shop_cat' => $cc->clientCategories($id)
         ]);
 

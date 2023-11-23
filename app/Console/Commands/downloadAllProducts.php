@@ -35,7 +35,7 @@ class downloadAllProducts extends Command
         $clientArr = [
             '1' =>'hippo',
             '2' =>'comsed',
-            '8' =>'rayatoys',
+            '8' =>'Rayatoys',
             '5' =>'vegatoys',
             '4' =>'bonami',
             '' =>'',
