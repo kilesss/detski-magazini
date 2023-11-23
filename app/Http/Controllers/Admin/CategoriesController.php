@@ -14,13 +14,13 @@ use function React\Promise\all;
 class CategoriesController extends AdminController
 {
     public function categories(){
-        return $this->view('admin.categories', ['categories' =>Categories::all()]);
+        return $this->view('admin.categories', ['categories' =>\App\Models\Categories::all()]);
 
     }
     public function categoriesSubmit(){
-        $categories = new Categories();
+        $categories = new \App\Models\Categories();
         if (\request('id') != 0){
-            $categories= Categories::where(['id' => \request('id')]);
+            $categories= \App\Models\Categories::where(['id' => \request('id')]);
             $categories->id = \request('id');
         }
         $categories->title = \request('title');

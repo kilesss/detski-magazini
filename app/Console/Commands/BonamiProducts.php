@@ -36,7 +36,7 @@ class BonamiProducts extends Command
         $i = true;
         $k = 1;
         while ($i == true){
-           $i =  $this->getProducts('https://www.bonami.bg/c/kategorii?p='.$k,'/<a class="\n*\s*ProductCard_card__Dpw4_\n*\s*" href="(.*?)">/m', 4 ,'https://www.bonami.bg');
+           $i =  $this->getProducts('https://www.bonami.bg/c/za-deca?p='.$k,'/<a class="\n*\s*ProductCard_card__Dpw4_\n*\s*" href="(.*?)">/m', 4 ,'https://www.bonami.bg');
 
             $k++;
             echo $k."\n";
