@@ -25,7 +25,7 @@ class ClientCategories extends Model
 
 
     public function clientCategories($client_id){
-        $allCategories = DB::table($this->table)->get()->toArray();
+        $allCategories = DB::table($this->table)->where('client_id', $client_id)->get()->toArray();
         foreach ($allCategories as $key =>  $cat){
             if ($cat->client_master_id != null ){
                 $allCategories[$key]->master_title = DB::table($this->table)->select('latin_title')->where('id', $cat->client_master_id)->first()->latin_title;
