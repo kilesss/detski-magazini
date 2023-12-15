@@ -32,6 +32,14 @@ class KidsoProducts extends Command
     {
         $categoryLinks = [
             'https://kidso.bg/bebeta/?page=',
+            'https://kidso.bg/momicheta/?page=',
+            'https://kidso.bg/momcheta/?page=',
+            'https://kidso.bg/obuvki-momicheta/?page=',
+            'https://kidso.bg/obuvki-momcheta/?page=',
+            'https://kidso.bg/igrachki/?page=',
+            'https://kidso.bg/obzavejdane/?page=',
+            'https://kidso.bg/zizito/?page=',
+            'https://kidso.bg/promotsii/?page=',
 
         ];
 

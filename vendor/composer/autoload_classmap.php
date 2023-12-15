@@ -14,7 +14,7 @@ return array(
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\Mapping\\ParsingController' => $baseDir . '/app/Http/Controllers/Mapping/ParsingController.php',
     'App\\Http\\Controllers\\Mapping\\hippoMapping' => $baseDir . '/app/Http/Controllers/Mapping/hippoMapping.php',
-    'App\\Http\\Controllers\\Mapping\\toysiMapping' => $baseDir . '/app/Http/Controllers/Mapping/toysiMapping.php',
+    'App\\Http\\Controllers\\Mapping\\toyzzMapping' => $baseDir . '/app/Http/Controllers/Mapping/toyzzMapping.php',
     'App\\Http\\Controllers\\Mapping\\vegatoysMapping' => $baseDir . '/app/Http/Controllers/Mapping/vegatoysMapping.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',

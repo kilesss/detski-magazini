@@ -9,7 +9,7 @@ use App\Models\ProductImages;
 use App\Models\Products;
 use JetBrains\PhpStorm\NoReturn;
 
-class RayatoysMapping implements MappingInterface
+class rayatoysMapping implements MappingInterface
 {
 
 
@@ -23,7 +23,8 @@ class RayatoysMapping implements MappingInterface
             'description' => '/<div class="text-page" itemprop="description">\s*\t*(.*?)\s*<\/div>/s',
             'categories_section' => '/<ul class="items">(.*?)<\/ul>/s',
             'categories' => '/<span itemprop="name">\n*\s*(.*?)\s\s+<\/span>\n*\s+<meta itemprop="position" content="[1|2|3]"/s',
-            'brand' =>  '//m'
+            'brand' =>  '//m',
+            'imagelink' => ""
 
         ], $this);
     }

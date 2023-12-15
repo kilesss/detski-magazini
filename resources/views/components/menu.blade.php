@@ -46,7 +46,7 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-3 col-md-3 col-12">
                     <div class="lago">
-                        <a href="index.html"><img src="{{asset('front/img/logo.png')}}" alt="lago" /></a>
+                        <a href="{{ route('home') }}"><img src="{{asset('front/img/detski_magazini.png')}}" style="max-width: 120%" alt="lago" /></a>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-12">
