@@ -9,22 +9,23 @@ use App\Models\ProductImages;
 use App\Models\Products;
 use JetBrains\PhpStorm\NoReturn;
 
-class toysiMapping implements MappingInterface
+class rayatoysMapping implements MappingInterface
 {
 
 
     public function parseData($links, $shopId): void
     {
         $parseController = new ParsingController($links, $shopId,  [
-            'images' => '/<meta property="og:image"\n*\s*content="(\S*)"/ms',
-            'title' => '/<meta property="og:title" content="(.*?)" \/>/ms',
-            'price' => '/<span class="c-price-exclude-taxes__no-wholesale-price-list-price-digits price" style="display:none;" itemprop="price">(\S+)<\/span>\s*<span class="c-price-exclude-taxes__no-wholesale-price-currency currency"/m',
-            'pricePromotion' => '//',
-            'description' => '/div class="tab-content c-tab__detailed-description" id="product-detailed-description">\n*\t*<div class="s-html-editor">\n*\t*<p style="text-align: justify;">(.*?)<\/div>\n*<\/div>/ms',
-            'categories_section' => '/<div class="c-breadcrumb c-breadcrumb__list">(.*?)<\/div>/ms',
-            'categories' => '/c-breadcrumb__item-link">(.*?)<\/a>/ms',
+            'images' => '/<meta property="og:image" content="(\S+) \/>/m',
+            'title' => '/<meta property="og:title" content="(.*?)" \/>/m',
+            'price' =>  '/<meta property="product:price:amount" content="(.*?)" \/>/m',
+            'pricePromotion' =>  '//mix',
+            'description' => '/<div class="text-page" itemprop="description">\s*\t*(.*?)\s*<\/div>/s',
+            'categories_section' => '/<ul class="items">(.*?)<\/ul>/s',
+            'categories' => '/<span itemprop="name">\n*\s*(.*?)\s\s+<\/span>\n*\s+<meta itemprop="position" content="[1|2|3]"/s',
             'brand' =>  '//m',
             'imagelink' => ""
+
         ], $this);
     }
 
@@ -55,14 +56,11 @@ class toysiMapping implements MappingInterface
 
     public function getImages($html)
     {
-        preg_match_all('/<meta property="og:image"\n*\s*content="(\S*)"/ms', $html, $matches, PREG_SET_ORDER, 0);
-        if (isset($matches[0]) && $matches[0][1]){
-            return $matches[0][1];
-        }
         // TODO: Implement getImages() method.
     }
 
     public function getCategories($html)
     {
         // TODO: Implement getCategories() method.
-    }}
+    }
+}

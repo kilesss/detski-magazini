@@ -21,7 +21,7 @@ class executeEverything extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'DEPRECATED';
 
     /**
      * Execute the console command.

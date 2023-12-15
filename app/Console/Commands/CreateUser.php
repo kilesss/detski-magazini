@@ -24,7 +24,7 @@ class CreateUser extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Create admin USer';
 
     /**
      * Execute the console command.

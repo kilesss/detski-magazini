@@ -173,7 +173,6 @@ class ParsingController extends ParsingHelpers
         if ($responce = $this->masterInstance->getImages($this->html)) {
             $this->images = $responce;
         }
-        $re = '/href="(\S+)"\s+data-gallery="gallery"/mix';
         preg_match_all($this->regex['images'], $this->html, $matches, PREG_SET_ORDER, 0);
         $links = [];
 
@@ -181,7 +180,7 @@ class ParsingController extends ParsingHelpers
             if (isset($match[1])) {
                 $links[] = [
                     'product_id' => $this->currentProductId,
-                    'image_url' => $match[1]
+                    'image_url' => $this->regex['imagelink'].$match[1]
                 ];
             }
         }

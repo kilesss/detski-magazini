@@ -23,7 +23,8 @@ class hippoMapping implements MappingInterface
             'description' => '/class="product\sattribute\sdescription"(.*?)<div\sclass="additional-attributes/mxs',
             'categories_section' => '/<div class="breadcrumbs">(.*?)<li\s+class="item product/s',
             'categories' => '/itemprop="name">\n?\s?(.*?\s*)<\/span/mxs',
-            'brand' =>  '/type":"Brand","name":"(.*?)"}/m'
+            'brand' =>  '/type":"Brand","name":"(.*?)"}/m',
+            'imagelink' => ""
         ], $this);
     }
 

@@ -23,7 +23,9 @@ class bonamiMapping implements MappingInterface
             'description' => '/class="short-description">(.*?)<\/div>/mxs',
             'categories_section' => '/class="breadcrumbs\sdiff-breadcrumb"(.*?)<\/ul>/mxs',
             'categories' => '/">(.+?)<\//mxs',
-            'brand' =>  '//m'
+            'brand' =>  '//m',
+            'imagelink' => ""
+
 
         ], $this);
     }

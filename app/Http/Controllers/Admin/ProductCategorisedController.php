@@ -19,11 +19,21 @@ class ProductCategorisedController extends AdminController
     public function productsCategorised(){
         $cats = new Categories();
         $categories = $cats->getFormatCategories();
-        $prod = Products::orderBy('title')->where('master_cat_id', null)->where('client_id', 1)->orderBy('title')->first()->toArray();
-        $countProducts = Products::orderBy('title')->where('master_cat_id', null)->where('client_id', 1)->count();
-        $image = ProductImages::orderBy('id')->where('product_id', $prod['id'])->first()->toArray();
+        $prod = Products::orderBy('title')->where('master_cat_id', null)->orWhere('master_cat_id', 0)->orderBy('title')->first();
+        if ($prod != null) {
+            $prod = $prod->toArray();
+
+            $countProducts = Products::orderBy('title')->where('master_cat_id', null)->where('client_id', 1)->count();
+            $image = ProductImages::orderBy('id')->where('product_id', $prod['id'])->first();
+            if ($image != null) {
+                $image = $image->toArray();
+            }
+            return view('admin.productsCat', ['categories' => $categories, 'product' => $prod, 'image' => $image['image_url'], 'count' => $countProducts]);
+
+        }
+        return view('admin.productsCat', ['categories' => $categories, 'product' => [], 'image' => '', 'count' => 0]);
+
         //TODO add image
-        return view('admin.productsCat', ['categories' => $categories, 'product' => $prod, 'image' => $image['image_url'], 'count' => $countProducts]);
     }
 
     public function productsCategorisedSubmit()

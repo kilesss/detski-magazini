@@ -25,7 +25,8 @@ class comsedMapping implements MappingInterface
             'description' => '/id="description">(.*?)<span class="specification-text">/ms',
             'categories_section' => '/class="list-unstyled mt0">(.*?)<\/li>\n*\s*<\/ul>/ms',
             'categories' => '/(Категория:|Вид:)\n*\s*<span>\n*\s*<a href=\S+">(.*?)<\/a/ms',
-            'brand' =>  '/Марка:\n*\s*<span>\n*\s*<a href=\S+">(.*?)<\/a/ms'
+            'brand' =>  '/Марка:\n*\s*<span>\n*\s*<a href=\S+">(.*?)<\/a/ms',
+            'imagelink' => ""
 
         ], $this);
     }

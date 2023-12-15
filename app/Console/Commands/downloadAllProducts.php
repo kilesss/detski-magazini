@@ -24,7 +24,7 @@ class downloadAllProducts extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'download all products information ';
 
     /**
      * Execute the console command.
@@ -38,8 +38,9 @@ class downloadAllProducts extends Command
             '8' =>'Rayatoys',
             '5' =>'vegatoys',
             '4' =>'bonami',
-            '' =>'',
-            '' =>'',
+            '7' =>'toysi',
+            '10' =>'bghlapeta',
+            '11' =>'ohoboho',
         ];
        $r =  ProductsForMapping::where('mapped', 0)->get();
        foreach ($r as $k){
@@ -50,10 +51,5 @@ class downloadAllProducts extends Command
 
        }
 
-        Artisan::call('app:parse-sitemaps', ['sitemapname' => 'hippo' , 'shopId' => 1]);
-        Artisan::call('app:parse-sitemaps', ['sitemapname' => 'comsed', 'shopId' => 2]);
-        Artisan::call('app:parse-sitemaps', ['sitemapname' => 'Rayatoys', 'shopId' => 8]);
-        Artisan::call('app:parse-sitemaps', ['sitemapname' => 'vegatoys', 'shopId' => 5]);
-        //
     }
 }

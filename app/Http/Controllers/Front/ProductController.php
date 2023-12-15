@@ -30,6 +30,7 @@ class ProductController extends Controller
         $t = new ProductsFront();
         $t->getRandomProduct(9);
         $products =  \App\Models\Products::where('id', $id)->first()->toArray();
+        dd($products);
         $client = Clients::where('id', $products['client_id'])->first()->toArray();
         return $this->view('product', [
             'client' => $client,
